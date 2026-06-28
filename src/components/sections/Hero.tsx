@@ -56,8 +56,20 @@ export function Hero() {
   const [roleIdx, setRoleIdx] = useState(0);
   const [fastMode, setFastMode] = useState(true);
 
+  // Lock scroll during the 2.4s initial load sequence
   useEffect(() => {
-    const speed = fastMode ? 700 : 2400;
+    document.body.style.overflow = "hidden";
+    const t = setTimeout(() => {
+      document.body.style.overflow = "";
+    }, 2400);
+    return () => {
+      clearTimeout(t);
+      document.body.style.overflow = "";
+    };
+  }, []);
+
+  useEffect(() => {
+    const speed = fastMode ? 800 : 2400;
     const t = setInterval(() => {
       setRoleIdx((p) => {
         const next = (p + 1) % ROLES.length;
@@ -84,30 +96,34 @@ export function Hero() {
         overflow: "hidden",
       }}
     >
-      {/* Background orbs */}
-      <div
-        className="orb orb-blue"
-        style={{ width: "700px", height: "700px", top: "-200px", left: "-150px", opacity: 0.6 }}
-      />
-      <div
-        className="orb orb-purple"
-        style={{ width: "500px", height: "500px", top: "30%", right: "-100px", opacity: 0.5 }}
-      />
-
-      {/* Subtle grid */}
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          backgroundImage: `
-            linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px)
-          `,
-          backgroundSize: "80px 80px",
-          maskImage: "radial-gradient(ellipse at center, black 30%, transparent 80%)",
-          pointerEvents: "none",
-        }}
-      />
+      {/* Background orbs and grid delayed for intro */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 2.4, duration: 1 }}
+      >
+        <div
+          className="orb orb-blue"
+          style={{ width: "700px", height: "700px", top: "-200px", left: "-150px", opacity: 0.6 }}
+        />
+        <div
+          className="orb orb-purple"
+          style={{ width: "500px", height: "500px", top: "30%", right: "-100px", opacity: 0.5 }}
+        />
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            backgroundImage: `
+              linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px)
+            `,
+            backgroundSize: "80px 80px",
+            maskImage: "radial-gradient(ellipse at center, black 30%, transparent 80%)",
+            pointerEvents: "none",
+          }}
+        />
+      </motion.div>
 
       <div className="wrap" style={{ position: "relative", zIndex: 1 }}>
 
@@ -117,7 +133,7 @@ export function Hero() {
           <motion.div
             initial={{ opacity: 0, x: 40 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 2.5, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ delay: 2.6, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             style={{
               position: "absolute",
               top: "20px",
@@ -170,7 +186,7 @@ export function Hero() {
             <motion.h1
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 2.3, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.8, delay: 2.4, ease: [0.16, 1, 0.3, 1] }}
               className="display-xl glow-white"
               style={{ marginBottom: "0.25rem" }}
             >
@@ -179,7 +195,7 @@ export function Hero() {
             <motion.h1
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 2.4, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.8, delay: 2.5, ease: [0.16, 1, 0.3, 1] }}
               className="display-xl text-gradient"
             >
               Kushwah
@@ -216,7 +232,7 @@ export function Hero() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 2.7, duration: 0.6 }}
+            transition={{ delay: 2.8, duration: 0.6 }}
             style={{ maxWidth: "580px" }}
           >
             <p className="body-lg" style={{ marginBottom: "2rem", lineHeight: 1.75 }}>
@@ -269,21 +285,21 @@ export function Hero() {
 
         {/* ── MOBILE LAYOUT ── */}
         <div className="lg:hidden flex flex-col items-center w-full overflow-x-hidden pt-6 pb-12">
-          
+
           {/* HERO VISUAL SANDWICH */}
           <div className="relative w-full flex flex-col items-center mb-4 mt-6">
-            
+
             {/* GAGAN */}
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 2.2 }} className="text-white font-black tracking-tighter leading-[0.85] text-[5.5rem] md:text-[6.5rem] text-center relative z-0">
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 2.4 }} className="text-white font-black tracking-tighter leading-[0.85] text-[5.5rem] md:text-[6.5rem] text-center relative z-0">
               GAGAN
             </motion.div>
 
             {/* Glow */}
-            <div className="absolute top-[45%] left-1/2 -translate-x-1/2 w-[220px] h-[220px] bg-white/30 rounded-full blur-[40px] z-10 pointer-events-none" />
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2.5, duration: 0.6 }} className="absolute top-[45%] left-1/2 -translate-x-1/2 w-[220px] h-[220px] bg-white/30 rounded-full blur-[40px] z-10 pointer-events-none" />
 
             {/* DEEP - Absolute positioned behind the image, below GAGAN */}
             <div className="absolute top-[4.5rem] md:top-[5.5rem] left-0 right-0 w-full flex justify-center z-10 pointer-events-none">
-              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 2.3 }} className="font-black tracking-tighter leading-[0.85] text-[5.5rem] md:text-[6.5rem] text-center" style={{ WebkitTextStroke: '1.5px rgba(255,255,255,0.4)', color: 'transparent' }}>
+              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 2.5 }} className="font-black tracking-tighter leading-[0.85] text-[5.5rem] md:text-[6.5rem] text-center" style={{ WebkitTextStroke: '1.5px rgba(255,255,255,0.4)', color: 'transparent' }}>
                 DEEP
               </motion.div>
             </div>
@@ -292,7 +308,7 @@ export function Hero() {
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 2.5, duration: 0.7 }}
+              transition={{ delay: 2.7, duration: 0.7 }}
               className="relative z-20 flex justify-center -mt-8 md:-mt-12 w-full max-w-[280px] md:max-w-[360px]"
             >
               <img
@@ -306,7 +322,7 @@ export function Hero() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 2.4 }}
+              transition={{ duration: 0.6, delay: 2.5 }}
               className="relative z-30 font-black tracking-tighter leading-none text-white text-[4rem] md:text-[5rem] text-center -mt-16 md:-mt-24"
               style={{ color: "#ffffff", WebkitTextFillColor: "#ffffff" }}
             >
@@ -344,7 +360,7 @@ export function Hero() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 2.7, duration: 0.6 }}
+            transition={{ delay: 2.8, duration: 0.6 }}
             style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
             className="w-full px-4"
           >
@@ -394,7 +410,7 @@ export function Hero() {
           className="lg:mt-10"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 2.9, duration: 0.6 }}
+          transition={{ delay: 3.0, duration: 0.6 }}
           style={{ marginTop: "3rem" }}
         >
           <p

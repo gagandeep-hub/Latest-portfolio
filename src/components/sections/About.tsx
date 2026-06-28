@@ -64,7 +64,7 @@ export function About() {
                 I engineer digital products that bridge the gap between complex logic and beautiful design. My journey from electronics to full-stack engineering is driven by a singular focus: building scalable solutions that matter.
               </TextReveal>
               <TextReveal as="p" className="mb-4 md:mb-12" style={{ lineHeight: 1.6, fontFamily: "var(--font-display)", fontStyle: "italic", fontSize: "clamp(1.15rem, 2.3vw, 1.75rem)", fontWeight: 400, color: "var(--text-80)", letterSpacing: "0.02em" }}>
-                "Whether I am architecting a high-performance Next.js dashboard or integrating Machine Learning models into production, I believe in writing code that is as elegant as it is powerful."
+                &quot;Whether I am architecting a high-performance Next.js dashboard or integrating Machine Learning models into production, I believe in writing code that is as elegant as it is powerful.&quot;
               </TextReveal>
             </FadeUp>
 
@@ -168,8 +168,8 @@ export function About() {
                     letterSpacing: "-0.01em",
                   }}
                 >
-                  "My goal is to become a Software Engineer building scalable products
-                  using Machine Learning and Full Stack Engineering."
+                  &quot;My goal is to become a Software Engineer building scalable products
+                  using Machine Learning and Full Stack Engineering.&quot;
                 </p>
               </div>
             </FadeUp>

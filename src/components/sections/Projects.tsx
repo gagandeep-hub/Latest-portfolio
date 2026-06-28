@@ -165,9 +165,9 @@ export function Projects() {
                           zIndex: 3,
                         }}
                       />
-                      {(project as any).image ? (
+                      {(project as { image?: string }).image ? (
                         <img
-                          src={(project as any).image}
+                          src={(project as { image?: string }).image}
                           alt={project.name}
                           style={{
                             width: "100%", height: "100%", objectFit: "cover", objectPosition: "top",

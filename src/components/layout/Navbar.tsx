@@ -14,6 +14,10 @@ const NAV_LINKS = [
 ];
 
 export function Navbar() {
+  const [navDelay, setNavDelay] = useState(2.4);
+  useEffect(() => {
+    if (window.innerWidth < 1024) setNavDelay(2.4);
+  }, []);
   const pathname = usePathname();
   const router = useRouter();
   const [scrolled, setScrolled] = useState(false);
@@ -71,7 +75,7 @@ export function Navbar() {
       <motion.header
         initial={{ y: -80, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.7, delay: 2.3, ease: [0.16, 1, 0.3, 1] }}
+        transition={{ duration: 0.7, delay: navDelay, ease: [0.16, 1, 0.3, 1] }}
         style={{
           position: "fixed",
           top: 0, left: 0, right: 0,
@@ -163,7 +167,7 @@ export function Navbar() {
           <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
             {/* Desktop resume button */}
             <a
-              href="/assests/resume (1).pdf"
+              href="/resume.pdf"
               download
               className="nav-resume-btn btn btn-primary"
               style={{ padding: "0.5rem 1.25rem", fontSize: "0.875rem", borderRadius: "999px" }}

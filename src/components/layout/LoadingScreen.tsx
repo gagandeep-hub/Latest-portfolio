@@ -3,47 +3,68 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
+const ROLES = ["Problem Solver", "ML Developer", "Software Engineer"];
+
 export function LoadingScreen() {
+  const [roleIdx, setRoleIdx] = useState(0);
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
-    // Show the loading screen for 2.2 seconds before fading out
-    const timer = setTimeout(() => {
-      setVisible(false);
-    }, 2200);
+    // Show each role for 600ms
+    const interval = setInterval(() => {
+      setRoleIdx((prev) => {
+        if (prev >= ROLES.length - 1) {
+          clearInterval(interval);
+          // After the last role has been shown for 600ms, hide the loading screen
+          setTimeout(() => setVisible(false), 600);
+          return prev;
+        }
+        return prev + 1;
+      });
+    }, 600);
 
-    return () => clearTimeout(timer);
+    return () => clearInterval(interval);
   }, []);
 
   return (
     <AnimatePresence>
       {visible && (
         <motion.div
-          className="loading-overlay"
-          style={{ 
-            flexDirection: "column", 
-            justifyContent: "center", 
+          style={{
+            position: "fixed",
+            inset: 0,
+            zIndex: 9999,
+            backgroundColor: "#000000",
+            display: "flex",
             alignItems: "center",
-            background: "#050505",
+            justifyContent: "center",
           }}
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.8, ease: "easeInOut" }}
         >
-          <motion.h1
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            style={{
-              fontFamily: "var(--font-display)",
-              fontSize: "clamp(1.5rem, 3vw, 2.5rem)",
-              fontWeight: 400,
-              color: "var(--text-100)",
-              letterSpacing: "-0.02em",
-            }}
-          >
-            Welcome to my portfolio
-          </motion.h1>
+          <AnimatePresence mode="wait">
+            <motion.p
+              key={roleIdx}
+              initial={{ y: 45, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: -45, opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              style={{
+                fontFamily: "var(--font-display)",
+                fontSize: "clamp(1.5rem, 3vw, 2.25rem)",
+                fontWeight: 500,
+                color: "var(--text-60)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: "0.5rem",
+              }}
+            >
+              <span style={{ color: "var(--text-20)" }}>—</span>
+              {ROLES[roleIdx]}
+            </motion.p>
+          </AnimatePresence>
         </motion.div>
       )}
     </AnimatePresence>
