@@ -80,17 +80,16 @@ export function Achievements() {
 
       <style dangerouslySetInnerHTML={{
         __html: `
-          .milestone-card:hover {
+          .milestone-card {
             background: #ffffff !important;
             border-color: #ffffff !important;
-            box-shadow: 0 15px 30px rgba(255,255,255,0.1) !important;
           }
-          .milestone-card:hover h3,
-          .milestone-card:hover p,
-          .milestone-card:hover span {
+          .milestone-card h3,
+          .milestone-card p,
+          .milestone-card span {
             color: #000000 !important;
           }
-          .milestone-card:hover svg {
+          .milestone-card svg {
             color: #000000 !important;
           }
         `
@@ -127,14 +126,6 @@ export function Achievements() {
                     cursor: "pointer",
                     position: "relative",
                     overflow: "hidden",
-                  }}
-                  onMouseEnter={(e) => {
-                    const el = e.currentTarget;
-                    el.style.transform = "translateY(-6px) scale(1.02)";
-                  }}
-                  onMouseLeave={(e) => {
-                    const el = e.currentTarget;
-                    el.style.transform = "translateY(0) scale(1)";
                   }}
                 >
                   <Icon size={32} style={{ color: "var(--text-60)" }} />

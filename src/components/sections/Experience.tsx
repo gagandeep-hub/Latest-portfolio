@@ -54,39 +54,31 @@ export function Experience() {
             __html: `
           .exp-card {
             padding: 1.75rem 2.25rem;
-            background: var(--bg-1);
-            border: 1px solid var(--border);
+            background: #ffffff !important;
+            border: 1px solid #ffffff !important;
             display: grid;
             grid-template-columns: auto 1fr auto;
             gap: 1.5rem;
             align-items: start;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             border-radius: 14px;
-            color: var(--text-100);
-          }
-          .exp-card:hover {
-            background: #ffffff;
-            color: #000000;
-            border-color: #ffffff;
-            transform: translateY(-4px);
-            box-shadow: 0 15px 30px rgba(255,255,255,0.1);
-          }
-          .exp-card:hover h3, 
-          .exp-card:hover p, 
-          .exp-card:hover span, 
-          .exp-card:hover .exp-duration {
             color: #000000 !important;
           }
-          .exp-card:hover .exp-icon-box {
+          .exp-card h3, 
+          .exp-card p, 
+          .exp-card span, 
+          .exp-card .exp-duration {
+            color: #000000 !important;
+          }
+          .exp-card .exp-icon-box {
             background: rgba(0,0,0,0.05) !important;
             border-color: rgba(0,0,0,0.1) !important;
           }
-          .exp-card:hover .exp-icon-box svg {
+          .exp-card .exp-icon-box svg {
             color: #000000 !important;
           }
-          .exp-card:hover .skill-tag {
-            background: rgba(0,0,0,0.05);
-            border-color: rgba(0,0,0,0.1);
+          .exp-card .skill-tag {
+            background: rgba(0,0,0,0.05) !important;
+            border-color: rgba(0,0,0,0.1) !important;
             color: #000000 !important;
           }
           
