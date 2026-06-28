@@ -87,7 +87,6 @@ export function Projects() {
       <div className="wrap" style={{ position: "relative", zIndex: 1 }}>
         {/* Projects grid */}
         <motion.div
-          layout
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 330px), 1fr))",
@@ -100,7 +99,6 @@ export function Projects() {
               return (
                 <FadeUp key={project.id} delay={i * 0.06} className={`project-item project-item-${i}`}>
                   <motion.div
-                    layout
                     initial={{ opacity: 0, y: 16 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, scale: 0.96 }}
@@ -116,7 +114,7 @@ export function Projects() {
                       borderLeft: "1px solid rgba(255,255,255,0.1)",
                       borderBottom: "1px solid rgba(255,255,255,0.55)",
                       borderRadius: "1.5rem",
-                      backdropFilter: "blur(44px) saturate(180%)",
+                      backdropFilter: "blur(12px) saturate(140%)",
                       /* Strong inner light reflection and outer drop shadow */
                       boxShadow: "inset 0 1px 3px rgba(255,255,255,0.3), inset 0 28px 36px -18px rgba(255,255,255,0.14), 0 0 0 1px rgba(255,255,255,0.14), 0 18px 44px rgba(0,0,0,0.7), 0 0 32px rgba(255,255,255,0.14)",
                       overflow: "hidden",
@@ -169,6 +167,8 @@ export function Projects() {
                         <img
                           src={(project as { image?: string }).image}
                           alt={project.name}
+                          loading="lazy"
+                          decoding="async"
                           style={{
                             width: "100%", height: "100%", objectFit: "cover", objectPosition: "top",
                             filter: "brightness(0.85) contrast(1.1)",

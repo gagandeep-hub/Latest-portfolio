@@ -141,7 +141,7 @@ export default function ProjectsPage() {
                     borderTop: "1px solid rgba(255,255,255,0.15)",
                     borderLeft: "1px solid rgba(255,255,255,0.1)",
                     borderRadius: "1.5rem",
-                    backdropFilter: "blur(40px) saturate(160%)",
+                    backdropFilter: "blur(12px) saturate(140%)",
                     boxShadow: "inset 0 1px 2px rgba(255,255,255,0.2), inset 0 24px 32px -16px rgba(255,255,255,0.05), 0 16px 40px rgba(0,0,0,0.6)",
                     overflow: "hidden",
                     display: "flex",
@@ -188,6 +188,8 @@ export default function ProjectsPage() {
                       <img
                         src={(project as { image?: string }).image}
                         alt={project.name}
+                        loading="lazy"
+                        decoding="async"
                         style={{
                           width: "100%", height: "100%", objectFit: "cover", objectPosition: "top",
                           filter: "brightness(0.85) contrast(1.1)",
