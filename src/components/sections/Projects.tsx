@@ -1,10 +1,11 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { PROJECTS } from "@/lib/constants";
 import { FadeUp } from "@/components/ui/TextReveal";
 import { FiGithub, FiExternalLink, FiArrowUpRight, FiArrowRight } from "react-icons/fi";
 import Link from "next/link";
+import Image from "next/image";
 
 export function Projects() {
   const displayProjects = PROJECTS.slice(0, 6);
@@ -35,6 +36,7 @@ export function Projects() {
           boxShadow: "0 -20px 60px rgba(255, 255, 255, 0.04)",
           pointerEvents: "none",
           zIndex: 0,
+          willChange: "transform",
         }}
       />
 
@@ -49,9 +51,9 @@ export function Projects() {
           height: "180px",
           background:
             "radial-gradient(ellipse at center, rgba(255,255,255,0.28) 0%, rgba(255,255,255,0.06) 45%, rgba(255,255,255,0) 75%)",
-          filter: "blur(30px)",
           pointerEvents: "none",
           zIndex: 0,
+          willChange: "transform",
         }}
       />
 
@@ -94,15 +96,11 @@ export function Projects() {
             marginBottom: "4rem",
           }}
         >
-          <AnimatePresence>
+          <>
             {displayProjects.map((project, i) => {
               return (
                 <FadeUp key={project.id} delay={i * 0.06} className={`project-item project-item-${i}`}>
-                  <motion.div
-                    initial={{ opacity: 0, y: 16 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, scale: 0.96 }}
-                    transition={{ delay: i * 0.05, duration: 0.35 }}
+                  <div
                     className="glass-card liquid-glass-card"
                     style={{
                       height: "100%",
@@ -114,13 +112,14 @@ export function Projects() {
                       borderLeft: "1px solid rgba(255,255,255,0.1)",
                       borderBottom: "1px solid rgba(255,255,255,0.55)",
                       borderRadius: "1.5rem",
-                      backdropFilter: "blur(12px) saturate(140%)",
+                      backdropFilter: "blur(4px)",
                       /* Strong inner light reflection and outer drop shadow */
-                      boxShadow: "inset 0 1px 3px rgba(255,255,255,0.3), inset 0 28px 36px -18px rgba(255,255,255,0.14), 0 0 0 1px rgba(255,255,255,0.14), 0 18px 44px rgba(0,0,0,0.7), 0 0 32px rgba(255,255,255,0.14)",
+                      boxShadow: "inset 0 1px 3px rgba(255,255,255,0.3), inset 0 28px 36px -18px rgba(255,255,255,0.14), 0 18px 44px rgba(0,0,0,0.7)",
                       overflow: "hidden",
                       display: "flex",
                       flexDirection: "column",
-                      transition: "all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)",
+                      transition: "transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease, border-color 0.4s ease, background 0.4s ease",
+                      willChange: "transform",
                       cursor: "pointer",
                       position: "relative",
                     }}
@@ -130,7 +129,7 @@ export function Projects() {
                       el.style.borderTopColor = `rgba(255,255,255,0.6)`;
                       el.style.borderBottomColor = `rgba(255,255,255,0.75)`;
                       el.style.background = "linear-gradient(135deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.03) 100%)";
-                      el.style.boxShadow = `inset 0 1px 3px rgba(255,255,255,0.36), inset 0 28px 36px -18px rgba(255,255,255,0.18), 0 0 0 1px rgba(255,255,255,0.22), 0 22px 56px rgba(0,0,0,0.84), 0 0 44px rgba(255,255,255,0.24)`;
+                      el.style.boxShadow = `inset 0 1px 3px rgba(255,255,255,0.36), inset 0 28px 36px -18px rgba(255,255,255,0.18), 0 22px 56px rgba(0,0,0,0.84)`;
                       el.style.transform = "translateY(-6px) scale(1.02)";
                     }}
                     onMouseLeave={(e) => {
@@ -139,7 +138,7 @@ export function Projects() {
                       el.style.borderTopColor = "rgba(255,255,255,0.15)";
                       el.style.borderBottomColor = "rgba(255,255,255,0.55)";
                       el.style.background = "linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.01) 100%)";
-                      el.style.boxShadow = "inset 0 1px 3px rgba(255,255,255,0.3), inset 0 28px 36px -18px rgba(255,255,255,0.14), 0 0 0 1px rgba(255,255,255,0.14), 0 18px 44px rgba(0,0,0,0.7), 0 0 32px rgba(255,255,255,0.14)";
+                      el.style.boxShadow = "inset 0 1px 3px rgba(255,255,255,0.3), inset 0 28px 36px -18px rgba(255,255,255,0.14), 0 18px 44px rgba(0,0,0,0.7)";
                       el.style.transform = "translateY(0) scale(1)";
                     }}
                   >
@@ -164,13 +163,13 @@ export function Projects() {
                         }}
                       />
                       {(project as { image?: string }).image ? (
-                        <img
-                          src={(project as { image?: string }).image}
+                        <Image
+                          src={(project as { image?: string }).image!}
                           alt={project.name}
-                          loading="lazy"
-                          decoding="async"
+                          fill
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                           style={{
-                            width: "100%", height: "100%", objectFit: "cover", objectPosition: "top",
+                            objectFit: "cover", objectPosition: "top",
                             filter: "brightness(0.85) contrast(1.1)",
                             transition: "filter 0.5s ease, transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1)",
                           }}
@@ -355,11 +354,11 @@ export function Projects() {
                         </div>
                       </div>
                     </div>
-                  </motion.div>
+                  </div>
                 </FadeUp>
               );
             })}
-          </AnimatePresence>
+          </>
         </motion.div>
 
         {/* View All Projects Button */}

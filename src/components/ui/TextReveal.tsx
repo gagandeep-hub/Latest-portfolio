@@ -62,25 +62,18 @@ export function TextReveal({ children, className = "", style, as: Tag = "h2" }: 
 export function FadeUp({
   children,
   className = "",
+  delay = 0,
 }: {
   children: React.ReactNode;
   className?: string;
   delay?: number;
 }) {
-  const ref = useRef<HTMLDivElement>(null);
-  
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start 0.95", "start 0.75"],
-  });
-
-  const opacity = useTransform(scrollYProgress, [0, 1], [0.3, 1]);
-  const y = useTransform(scrollYProgress, [0, 1], [24, 0]);
-
   return (
     <motion.div
-      ref={ref}
-      style={{ opacity, y }}
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ duration: 0.5, delay, ease: "easeOut" }}
       className={className}
     >
       {children}
