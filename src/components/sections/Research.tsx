@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+
 import { RESEARCH } from "@/lib/constants";
 import { FadeUp } from "@/components/ui/TextReveal";
 import { FiFileText, FiClock, FiCheckCircle } from "react-icons/fi";

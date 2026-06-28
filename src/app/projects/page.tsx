@@ -4,7 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { PROJECTS } from "@/lib/constants";
 import { FadeUp } from "@/components/ui/TextReveal";
-import { FiGithub, FiExternalLink, FiArrowUpRight, FiArrowLeft } from "react-icons/fi";
+import { FiGithub, FiExternalLink, FiArrowLeft } from "react-icons/fi";
 import Link from "next/link";
 
 const CATEGORIES = ["All", "Full Stack", "Frontend", "Electronics", "Web Dev", "AI / ML"];

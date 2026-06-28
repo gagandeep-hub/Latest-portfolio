@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+
 import { HACKATHONS } from "@/lib/constants";
 import { FadeUp } from "@/components/ui/TextReveal";
 import { FiAward, FiZap } from "react-icons/fi";

@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+
 
 interface InfiniteMarqueeProps {
   items: { name: string; icon: string }[];

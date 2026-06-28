@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { PERSONAL_INFO } from "@/lib/constants";
 import { FadeUp } from "@/components/ui/TextReveal";
-import { FiGithub, FiCode, FiStar, FiGitBranch, FiGitCommit } from "react-icons/fi";
+import { FiGithub, FiCode, FiStar, FiGitCommit } from "react-icons/fi";
 
 const PRINCIPLES = [
   { icon: "📖", title: "Learning in Public",     desc: "Sharing the journey openly — every step, mistake, and win." },

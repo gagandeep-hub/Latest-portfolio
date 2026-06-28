@@ -1,13 +1,12 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
-import { JOURNEY } from "@/lib/constants";
+import { useInView } from "framer-motion";
 import { FadeUp, TextReveal } from "@/components/ui/TextReveal";
 
 export function About() {
   const statsRef = useRef<HTMLDivElement>(null);
-  const inView = useInView(statsRef, { once: true, margin: "-80px" });
+  useInView(statsRef, { once: true, margin: "-80px" });
 
   return (
     <section id="about" style={{ position: "relative", overflow: "hidden", paddingTop: "4rem", paddingBottom: "2rem" }}>

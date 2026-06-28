@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+
 import { EXPERIENCE } from "@/lib/constants";
 import { FadeUp } from "@/components/ui/TextReveal";
 import { FiBriefcase, FiCalendar } from "react-icons/fi";

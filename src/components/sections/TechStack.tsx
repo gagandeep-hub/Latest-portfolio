@@ -41,37 +41,6 @@ const TECH_MAP: Record<string, { icon: React.ElementType; color: string }> = {
 
 import { FadeUp } from "@/components/ui/TextReveal";
 
-const TECH_ROWS = [
-  [
-    { icon: SiReact, name: "React", color: "#61DAFB" },
-    { icon: SiNextdotjs, name: "Next.js", color: "#ffffff" },
-    { icon: SiTypescript, name: "TypeScript", color: "#3178C6" },
-    { icon: SiJavascript, name: "JavaScript", color: "#F7DF1E" },
-    { icon: SiNodedotjs, name: "Node.js", color: "#68A063" },
-    { icon: SiExpress, name: "Express.js", color: "#ffffff" },
-    { icon: SiPython, name: "Python", color: "#F7CC42" },
-    { icon: SiMongodb, name: "MongoDB", color: "#4DB33D" },
-    { icon: SiTailwindcss, name: "TailwindCSS", color: "#38BDF8" },
-    { icon: SiRedux, name: "Redux", color: "#764ABC" },
-    { icon: SiHtml5, name: "HTML5", color: "#E34F26" },
-    { icon: SiCplusplus, name: "CSS/C++", color: "#1572B6" },
-  ],
-  [
-    { icon: SiPostgresql, name: "PostgreSQL", color: "#336791" },
-    { icon: SiMysql, name: "MySQL", color: "#4479A1" },
-    { icon: SiPrisma, name: "Prisma", color: "#ffffff" },
-    { icon: SiFirebase, name: "Firebase", color: "#FFCA28" },
-    { icon: SiDocker, name: "Docker", color: "#2496ED" },
-    { icon: SiGit, name: "Git", color: "#F05032" },
-    { icon: SiGithub, name: "GitHub", color: "#ffffff" },
-    { icon: SiLinux, name: "Linux", color: "#FCC624" },
-    { icon: SiVercel, name: "Vercel", color: "#ffffff" },
-    { icon: SiTensorflow, name: "TensorFlow", color: "#FF6F00" },
-    { icon: SiCplusplus, name: "C++/OpenCV", color: "#5C3EE8" },
-    { icon: SiFigma, name: "Figma", color: "#F24E1E" },
-  ],
-];
-
 const CATEGORIES = [
   {
     title: "Frontend",
@@ -116,15 +85,6 @@ const CATEGORIES = [
     techs: ["Figma", "VS Code", "Postman", "Arduino", "MATLAB"],
   },
 ];
-
-function TechPillItem({ icon: Icon, name, color }: { icon: React.ElementType; name: string; color: string }) {
-  return (
-    <div className="tech-pill">
-      <Icon style={{ color, width: "1.125rem", height: "1.125rem", flexShrink: 0 }} />
-      <span>{name}</span>
-    </div>
-  );
-}
 
 export function TechStack() {
   return (

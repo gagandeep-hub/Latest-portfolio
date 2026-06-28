@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+
 import { LEADERSHIP } from "@/lib/constants";
 import { FadeUp } from "@/components/ui/TextReveal";
 
